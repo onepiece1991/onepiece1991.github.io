@@ -1,7 +1,9 @@
-# Jxx Blog
+# HuxBlog Boilerplate
 
-##### This is the repositories of [Jxx Blog](https://github.com/onepiece1991/onepiece1991.github.io), all documents is over there!
+##### This is the boilerplate of [Hux Blog](https://github.com/Huxpro/huxpro.github.io), all documents is over there!
 
-#### [View Jxx Blog &rarr;](http://onepiece1991.github.io/)
+#### [View Boilerplate &rarr;](http://huangxuan.me/huxblog-boilerplate/)
 
-This blog is based on [Hux Blog &rarr;](http://huangxuan.me)
+#### [View Live Hux Blog &rarr;](http://huangxuan.me)
+
+## If you like Hux Blog, Please star [huxpro.github.io repo](https://github.com/Huxpro/huxpro.github.io) instead of this! Thank you!
