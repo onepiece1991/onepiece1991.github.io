@@ -5,8 +5,8 @@ header-img: img/home-bg.jpg
 email: hzxx9123@163.com
 description: ""
 keyword: ""
-url: "http://onepiece1991.github.io"              # your host, for absolute URL
-#baseurl: "/jxxblog"         # for example, '/blog' if your blog hosted on 'host/blog'
+url: "https://onepiece1991.github.io/"              # your host, for absolute URL
+#baseurl: "/huxblog-boilerplate"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
@@ -14,7 +14,7 @@ url: "http://onepiece1991.github.io"              # your host, for absolute URL
 RSS: false
 #weibo_username:     huxpro
 #zhihu_username:     huxpro
-#github_username:    onepiece1991
+github_username:    onepiece1991
 #twitter_username:  huxpro
 #facebook_username:  huxpro
 
@@ -83,7 +83,7 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 friends: [
     {
         title: "Jxx Blog",
-        href: "http://onepiece1991.github.io"
+        href: "https://onepiece1991.github.io/"
     },{
         title: "Foo",
         href: "#"
