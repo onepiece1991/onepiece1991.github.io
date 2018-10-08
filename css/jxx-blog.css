@@ -1,0 +1,20 @@
+@charset "utf-8";
+/**
+ * @Author: Jxx
+ * @Time: 2018-10-08
+ * @Description: Custom Css
+ */
+
+/*Cancel arrow in drop-down box.*/
+select {
+	-webkit-appearance: none;
+}
+.select-lange {
+	margin-top: 15px;
+	padding: 0 .4em;
+	min-height: 28px;
+    font-size: 14px;
+    color: #337ab7;
+    border-color: #337ab7;
+    background: #fff;
+}
