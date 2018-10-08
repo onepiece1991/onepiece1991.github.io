@@ -82,19 +82,10 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends
 friends: [
     {
-        title: "Jxx Blog",
-        href: "http://onepiece1991.github.io"
+        title: "Zhulj Blog",
+        href: "https://galabug.github.io/"
     },{
-        title: "Foo",
-        href: "#"
-    },{
-        title: "Bar",
-        href: "#"
-    },{
-        title: "Example Friends",
-        href: "#"
-    },{
-        title: "It helps SEO",
-        href: "#"
+        title: "My CSDN",
+        href: "https://blog.csdn.net/onepiece1991"
     }
 ]
