@@ -1,34 +1,46 @@
+---
+layout:     post
+title:      "javascript methods"
+subtitle:   "substring() substr()"
+date:       2018-10-29 20:25:00
+author:     "Jxx"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - js
+---
+
+
 ##substring()  
 [substring()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substring)
-·½·¨·µ»ØÒ»¸ö×Ö·û´®ÔÚ¿ªÊ¼Ë÷Òıµ½½áÊøË÷ÒıÖ®¼äµÄÒ»¸ö×Ó¼¯, »ò´Ó¿ªÊ¼Ë÷ÒıÖ±µ½×Ö·û´®µÄÄ©Î²µÄÒ»¸ö×Ó¼¯¡£  
+æ–¹æ³•è¿”å›ä¸€ä¸ªå­—ç¬¦ä¸²åœ¨å¼€å§‹ç´¢å¼•åˆ°ç»“æŸç´¢å¼•ä¹‹é—´çš„ä¸€ä¸ªå­é›†, æˆ–ä»å¼€å§‹ç´¢å¼•ç›´åˆ°å­—ç¬¦ä¸²çš„æœ«å°¾çš„ä¸€ä¸ªå­é›†ã€‚  
 
-#### Óï·¨:
+#### è¯­æ³•:
 
 ```javascript
 str.substring(indexStart[, indexEnd])  
 ```
-#### Àı×Ó:
+#### ä¾‹å­:
 
 ```javascript
 var anyString = 'Mozilla';
 var anyString4 = anyString.substring(anyString.length - 4);
 console.log(anyString4); //illa  
 
-//Öğ×ÖÊäÈëĞ§¹û
+//é€å­—è¾“å…¥æ•ˆæœ
 <p id="aa"></p>
-<div style="display:none" id="w">½ñÌìµÄÓê¸úÒÀÆ¼ÕÒËû°ÖÒªÇ®µÄÄÇÌìÒ»Ñù´ó£¡</div>
+<div style="display:none" id="w">ä»Šå¤©çš„é›¨è·Ÿä¾èæ‰¾ä»–çˆ¸è¦é’±çš„é‚£å¤©ä¸€æ ·å¤§ï¼</div>
 <script src="jquery.min.js"></script>
 <script type="text/javascript">
 window.onload = type;
 var index = 0;
 var word = $("#w").html();
 function type(){
-	$("#aa").html(word.substring(0,index++));
-	if(index > word.length) {
-		return;
-	} else {
-		setTimeout(type,50);
-	};
+    $("#aa").html(word.substring(0,index++));
+    if(index > word.length) {
+        return;
+    } else {
+        setTimeout(type,50);
+    };
 }
 </script>
 ```
@@ -36,14 +48,14 @@ function type(){
 
 ##substring()  
 [substr()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substr)
-·½·¨·µ»ØÒ»¸ö×Ö·û´®ÖĞ´ÓÖ¸¶¨Î»ÖÃ¿ªÊ¼µ½Ö¸¶¨×Ö·ûÊıµÄ×Ö·û¡£
+æ–¹æ³•è¿”å›ä¸€ä¸ªå­—ç¬¦ä¸²ä¸­ä»æŒ‡å®šä½ç½®å¼€å§‹åˆ°æŒ‡å®šå­—ç¬¦æ•°çš„å­—ç¬¦ã€‚
 
-#### Óï·¨:
+#### è¯­æ³•:
 
 ```javascript
 str.substr(start[, length]) 
 ```
-#### Àı×Ó:
+#### ä¾‹å­:
 
 ```javascript
 var str = "abcdefghij";
