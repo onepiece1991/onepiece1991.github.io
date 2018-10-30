@@ -40,3 +40,14 @@ var trAddBg = function (){
     }
 </script>
 ```
+
+### 获取键码
+```javascript
+$("body").keyup(function(event) {
+    //处理键盘事件
+    var myEvent = event || window.event;
+    var keyCode = myEvent.which || myEvent.keyCode || myEvent.charCode;
+    console.log(keyCode);
+})
+```
+
