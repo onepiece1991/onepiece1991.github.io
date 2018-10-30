@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "javascript methods"
+title:      "截取字符串"
 subtitle:   "substring() substr()"
 date:       2018-10-29 20:25:00
 author:     "Jxx"
