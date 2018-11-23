@@ -2,19 +2,19 @@
 layout:     post
 title:      "Welcome to Jxx Blog"
 subtitle:   " \"Hello World, Hello Blog\""
-date:       2018-10-08 10:00:00
+date:       2016-04-01 09:00:00
 author:     "Jxx"
-header-img: "img/post-bg-2015.jpg"
+header-img: "img/welcome-bg.jpg"
 tags:
     - 生活
 ---
 
-> “Yeah It's on. ”
+> “This is a memorable day.”
 
 
 ## 前言
 
 Jxx 的 Blog 就这么开通了。
 
-总算有个地方可以写点东西了。(主要是给自己看的)。
+继续更新中...![嘿嘿嘿](https://onepiece1991.github.io/img/onepiece.gif)
 
