@@ -46,7 +46,7 @@ function type(){
 ```
 
 
-## substring()  
+## substr()  
 [substr()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/substr)
 方法返回一个字符串中从指定位置开始到指定字符数的字符。
 
