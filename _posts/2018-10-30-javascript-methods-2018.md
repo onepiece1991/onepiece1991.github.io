@@ -51,3 +51,7 @@ $("body").keyup(function(event) {
 })
 ```
 
+### XMLHttpRequest 对象的三个重要的属性
+![XMLHttpRequest 对象的三个重要的属性](https://onepiece1991.github.io/img/in-post/post-js-version/xmlHttpRequest.png)
+当 readyState 等于 4 且状态status为 200 时，表示响应已就绪
+
