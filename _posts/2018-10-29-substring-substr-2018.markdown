@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "截取字符串"
-subtitle:   "substring() substr()"
+subtitle:   "substring() substr() slice() splice()"
 date:       2018-10-29 20:25:00
 author:     "Jxx"
 header-img: "img/post-bg-2015.jpg"
@@ -65,5 +65,64 @@ console.log(str.substr(-3));    // (-3): hij
 console.log(str.substr(1));     // (1): bcdefghij
 console.log(str.substr(-20,2)); // (-20, 2): ab
 console.log(str.substr(20,2));  // (20, 2):
-
 ```
+
+## splice()
+[splice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)  
+方法通过删除现有元素和/或添加新元素来修改数组,并以数组返回原数组中被修改的内容。  
+
+##### 语法:
+
+```javascript
+array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+```
+
+##### 例子:
+
+```javascript
+var months = ['Jan', 'March', 'April', 'June'];  
+months.splice(1, 0, 'Feb');  
+// inserts at 1st index position  
+console.log(months);  
+// expected output: Array ['Jan', 'Feb', 'March', 'April', 'June']  
+  
+months.splice(4, 1, 'May');  
+// replaces 1 element at 4th index    
+console.log(months);  
+// expected output: Array ['Jan', 'Feb', 'March', 'April', 'May']  
+```
+
+* 请注意，splice() 方法与 slice() 方法的作用是不同的，splice() 方法会直接对数组进行修改。 *
+
+## slice()
+[slice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
+方法返回一个新的数组对象，这一对象是一个由 begin和 end（不包括end）决定的原数组的浅拷贝。原始数组不会被改变。
+
+##### 语法:
+
+```javascript
+arr.slice();  
+// [0, end]
+
+arr.slice(begin);  
+// [begin, end]
+
+arr.slice(begin, end);  
+// [begin, end)
+```
+
+##### 例子:
+
+```javascript
+var animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];  
+
+console.log(animals.slice(2));  
+// expected output: Array ["camel", "duck", "elephant"]
+
+console.log(animals.slice(2, 4));  
+// expected output: Array ["camel", "duck"]
+
+console.log(animals.slice(1, 5));  
+// expected output: Array ["bison", "camel", "duck", "elephant"]
+```
+
