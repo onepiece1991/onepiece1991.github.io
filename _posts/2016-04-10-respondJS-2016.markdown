@@ -1,0 +1,32 @@
+---
+layout:     post
+title:      "respond.js"
+subtitle:   "IE8响应式兼容之respond.js的用法及使用时注意事项"
+date:       2016-04-10 10:00:00
+author:     "Jxx"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - CSS3
+---
+
+### Respond.js
+
+ 是一个快速、轻量的 polyfill，用于为 IE6-8 以及其它不支持 CSS3 Media Queries 的浏览器提供媒体查询的 min-width 和 max-width特性，实现响应式网页设计（Responsive Web Design）。
+
+### 用法注意事项
+
+> 1. 需要启动本地服务器（localhost），不能使用普通本地的url地址（file://开头）,否则respond.js会报错;
+> 2. 需要外部引入CSS文件，将CSS样式书写在style中是无效的;
+> 3. 最好不要为CSS设置utf-8的编码，使用默认;
+> 4. 由于respond插件是查找CSS文件，再进行处理，所以respond文件一定要放置在CSS文件的后面;
+> 5. css文件必须放在respond.js之前引用,respond.js可以放在body或网页底部,但为了防止闪屏,建议放在head中.
+
+### 官方文档提示
+> 1. 越早的引入 respond.js 文件，也就越可能避免 IE 下出现的闪屏。
+> 2. 不支持嵌套的媒体查询。
+> 3. utf-8 的字符编码对 respond.js 文件的运行有影响。
+>    官方API原文：
+>    `if CSS files are encoded in UTF-8 with Byte-Order-Mark, they will not work with Respond.js in IE7 or IE8.`
+>    基本含义就是：utf-8 格式的 CSS 文件字符编码会对插件造成影响
+>    但是在我使用 IE6-8 进行测试的时候，都能够正常显示（无论是在 css 文件中增加 charset 设置还是在 link 标签中增加 charset 设置）。因此，并不是太清楚这个位置 bug 的含义。
+> 4. 跨域可能会出现闪屏（我在测试IE8的时候，跨域引用css后没有效果，media查询无效）
