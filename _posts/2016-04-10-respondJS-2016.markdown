@@ -17,7 +17,7 @@ tags:
 
 > 1. 需要启动本地服务器（localhost），不能使用普通本地的url地址（file://开头）,否则respond.js会报错;
 > 2. 需要外部引入CSS文件，将CSS样式书写在style中是无效的;
-> 3. 最好不要为CSS设置utf-8的编码，使用默认;
+> 3. 最好不要为CSS设置utf-8的编码，使用默认（保存格式应该是 utf-8 无 BOM 格式）;
 > 4. 由于respond插件是查找CSS文件，再进行处理，所以respond文件一定要放置在CSS文件的后面;
 > 5. css文件必须放在respond.js之前引用,respond.js可以放在body或网页底部,但为了防止闪屏,建议放在head中.
 
