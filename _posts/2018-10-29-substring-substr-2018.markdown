@@ -4,7 +4,7 @@ title:      "截取字符串"
 subtitle:   "substring() substr() slice() splice()"
 date:       2018-10-29 20:25:00
 author:     "Jxx"
-header-img: "img/post-bg-2015.jpg"
+header-img: "img/post-bg-180006.jpg"
 tags:
     - javascript
 ---
