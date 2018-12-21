@@ -20,4 +20,4 @@ tags:
 
 **区别图如下**
 ![结果](https://onepiece1991.github.io/img/in-post/post-js-version/CSO-180002.png)
-
+`document.documentElement.clientHeight显示的是浏览器可视区域的高度`
