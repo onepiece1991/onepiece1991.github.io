@@ -54,4 +54,26 @@ $("body").keyup(function(event) {
 ### XMLHttpRequest 对象的三个重要的属性
 ![XMLHttpRequest 对象的三个重要的属性](https://onepiece1991.github.io/img/in-post/post-js-version/xmlHttpRequest.png)
 当 readyState 等于 4 且状态status为 200 时，表示响应已就绪
+```javascript
+var test;  
+if(window.XMLHttpRequest){  
+    test = new XMLHttpRequest();  
+}else if(window.ActiveXObject){  
+    test = new window.ActiveXObject();  
+}else{  
+    alert("请升级至最新版本的浏览器");  
+}  
+if(test !=null){  
+    test.open("GET","week.json",true);  
+    test.send(null);  
+    test.onreadystatechange=function(){  
+        if(test.readyState==4&&test.status==200){  
+            console.log("页面已就绪");
+            var obj = JSON.parse(test.responseText);  
+            console.log("json数据存放在responseText里")  
+        }  
+    };  
+  
+}
+```
 
