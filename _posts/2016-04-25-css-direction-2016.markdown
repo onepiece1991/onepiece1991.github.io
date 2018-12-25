@@ -18,7 +18,7 @@ tags:
 ```
 
 当placeholder里的内容最后一个是括号的时候，括号跑到了最左边，
-此时需要在placeholder的内容最后面加上**&#x200E;**  (十进制写法**&#8206;**)
+此时需要在placeholder的内容最后面加上**&amp;#x200E;**  (十进制写法**&amp;#8206;**)
 如
 ```html
 <input type="text" placeholder="请输入金额(限额500,000.00)&#x200E;" value="" />
@@ -26,4 +26,4 @@ tags:
 
 | 结果         | 描述                               | 实体名称  |  实体编号 |
 | ------  | ------------------ | :------:| ------- |
-|         | left-to-right mark | &lrm;   | &#8206; |
+|         | left-to-right mark | &amp;lrm;   | &amp;#8206; |
