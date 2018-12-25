@@ -1,0 +1,29 @@
+---
+layout:     post
+title:      "input框的placeholder值设置direction: rtl;placeholder里的括号显示异常"
+subtitle:   ""
+date:       2016-04-25 15:30:00
+author:     "Jxx"
+header-img: "img/post-bg-180004.jpg"
+tags:
+    - CSS
+---
+
+
+给input框设置placeholder的样式
+```css
+::-webkit-input-placeholder {
+    direction :rtl;
+}
+```
+
+当placeholder里的内容最后一个是括号的时候，括号跑到了最左边，
+此时需要在placeholder的内容最后面加上**&#x200E;**  (十进制写法**&#8206;**)
+如
+```html
+<input type="text" placeholder="请输入金额(限额500,000.00)&#x200E;" value="" />
+```
+
+| 结果         | 描述                               | 实体名称  |  实体编号 |
+| ------  | ------------------ | :------:| ------- |
+|         | left-to-right mark | &lrm;   | &#8206; |
