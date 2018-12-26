@@ -1,0 +1,91 @@
+---
+layout:     post
+title:      "使用原生JS的AJAX读取json全过程"
+subtitle:   ""
+date:       2016-04-28 14:00:00
+author:     "Jxx"
+header-img: "img/post-bg-180006.jpg"
+tags:
+    - javascript
+---
+ 
+## AJAX
+AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）
+AJAX用于前端与后端文件比如xml或者json之间的交互   
+
+由于AJAX不是完全前端，需要用到服务器，所以在做实验的时候必须把html文件和xml或json放到服务器部署的目录之中，我用的是本地服务器
+
+首先编辑一个简单的JSON文件，并命名为`test.json`，如下：
+```json
+[{
+  "key":"value"
+}]
+```
+
+
+```javascript
+function showJson(){
+    var test;
+    if(window.XMLHttpRequest){
+        test = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        test = new window.ActiveXObject();
+    } else {
+        alert('请升级')
+    }
+    if(test != null) {
+        test.open('GET','sss/test.json',true);
+        test.send(null);
+        test.onreadystatechange = function() {
+            if(test.readyState == 4 && test.status == 200) {
+                var obj = JSON.parse(test.responseText);
+                for (var i in obj){
+                    console.log(obj[i].key);
+                }
+            }
+        }
+    }
+}
+window.onload = showJson;
+```
+
+1. 使用AJAX，我们必须new一个XMLHttpRequest()的实例，在IE低版本浏览器中是ActiveXObject()。使用if语句判断即可。
+
+2. 通过判断readyState的交互状态以及status的交互状态来触发onreadystatechange事件。
+![XMLHttpRequest 对象的三个重要的属性](https://onepiece1991.github.io/img/in-post/post-js-version/xmlHttpRequest.png)
+>当readyState==4时我们只能知道服务器响应完毕，但还不知道服务器有没有找到我们请求的那个文件，这时就要引用status了。
+>在同时满足了readySate==4以及status==200时我们就可以得到我们想要的value了。
+
+3. 服务器返回的值是存在responseText对象里面的。这时我们可以使用JSON.parse()来取得里面的数据。
+
+4. 我们现在把JSON文件里的一整块数据都取了出来，但如果想取到其中的某一个块值比如说：value，就必须用到遍历，比如说for循环。这里的for循环我使用了另一种形式for(var name in obj)，这里的意思是取得对象的值，存放在变量name里面。因为JSON文件的结构就是由很多对象组成的。
+
+5. 如果是使用“GET”，则send()里面的值为null。如果是POST,则需要传具体的参数比如:send(name);
+
+
+## 原生ajax的四个过程
+
+- `new` 实例化
+>var xhr=new XMLHttpRequest();
+
+- `open`
+第一个参数是请求类型，第二个参数是请求的路径，第三个参数是是否使用异步机制
+>xhr.open(“post”,”php/do.php”,true);  
+
+  - 如果是post请求，需要设置RequestHeader
+>xhr.setRequestHeader(“Content-Type”,”application/x-www-form-urlencoded”);
+
+- `send`
+()内是请求头内容，如果是get请求，没有报文头，写xhr.send(null)
+>xhr.send(“name=”+ encodeURIComponent(“wqq”)+”&age=18”);
+
+- `onreadystatechange`
+如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性。![数据属性](https://onepiece1991.github.io/img/in-post/post-js-version/xmlHttpRequest.png)
+```javascript
+xhr.onreadystatechange = function(){
+    if(xhr.readystate == 4 && xhr.status ==200){
+        test.innerHTML = xhr.responseText;
+   }
+}
+```
+
