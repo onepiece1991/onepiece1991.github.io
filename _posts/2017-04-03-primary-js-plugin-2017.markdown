@@ -32,92 +32,92 @@ tags:
 
 插件完整代码
 ```javascript
-    ;(function(win,doc,undefined){
-        //AddBox是插件名，构造函数，一般首字母大写
-        //调用的时候直接new一下插件名并传参数或者对象就行了
-        var AddBox = function(demo,btn) {
-            //this指向这个函数（实例）
-            this.div = doc.getElementById(demo);
-            this.btn = doc.getElementById(btn);
-            this.Input = this.div.getElementsByTagName('input')[0];
-            //可以写一写默认的设置，方便下面调用
-            //这里写了什么都不会报错；只是有用没用的问题
-            this.author = 'Jinxq';
-            //执行下面写的函数，调用最开始执行的函数
-            this.init();
-        };
-        //给构造函数AddBox原型里添加属性（方法）
-        AddBox.prototype = {
-            //构造器指向构造函数，防止构造器指向Object
-            constructor: AddBox,
-            init: function() {
-                //把this保存下来防止在局部函数内部取不到（局部函数内部取得this可能是别的值） 
-                var _self = this;
-                this.btn.onclick = function(){
-                    //取得实时时间
-                    //扩展的方法之间都可以用this.方法名 互相调用
-                    var timeStamp = _self.getTimeStamp();
-                    var _val = _self.Input.value;
-                    //创建临时div存放修改记录
-                    var tempdiv = doc.createElement('div');
-                    tempdiv.innerHTML = timeStamp + ' 修改成 ' + _val;
-                    tempdiv.style.color = '#000';
-                    _self.div.appendChild(tempdiv);
-                    _self.setColor();
-                }
-            },
-            //根据input框里的色值来色值body的颜色
-            setColor: function() {
-                doc.body.style.backgroundColor = this.Input.value;
-            },
-            //获取时间戳
-            getTimeStamp: function() {
-                var myDate = new Date();
-                var year = myDate.getFullYear();
-                var month = myDate.getMonth() + 1;
-                var dateT = myDate.getDate();
-                var day = myDate.getDay();
-                var hour = myDate.getHours();
-                var minute = myDate.getMinutes();
-                var second = myDate.getSeconds();
-                switch(day) {
-                    case 0:
-                        day = '日';
-                        break;
-                    case 1:
-                        day = '一';
-                        break;
-                    case 2:
-                        day = '二';
-                        break;
-                    case 3:
-                        day = '三';
-                        break;
-                    case 4:
-                        day = '四';
-                        break;
-                    case 5:
-                        day = '五';
-                        break;
-                    case 6:
-                        day = '六';
-                        break;
-                };
-                if(hour < 10) {
-                    hour = '0' + hour;
-                }
-                if(minute < 10) {
-                    minute = '0' + minute;
-                }
-                if(second < 10) {
-                    second = '0' + second;
-                }
-                return year + '-' + month + '-' + dateT + ' 星期' + day + ' ' + hour + ':' + minute + ':' + second;
+;(function(win,doc,undefined){
+    //AddBox是插件名，构造函数，一般首字母大写
+    //调用的时候直接new一下插件名并传参数或者对象就行了
+    var AddBox = function(demo,btn) {
+        //this指向这个函数（实例）
+        this.div = doc.getElementById(demo);
+        this.btn = doc.getElementById(btn);
+        this.Input = this.div.getElementsByTagName('input')[0];
+        //可以写一写默认的设置，方便下面调用
+        //这里写了什么都不会报错；只是有用没用的问题
+        this.author = 'Jinxq';
+        //执行下面写的函数，调用最开始执行的函数
+        this.init();
+    };
+    //给构造函数AddBox原型里添加属性（方法）
+    AddBox.prototype = {
+        //构造器指向构造函数，防止构造器指向Object
+        constructor: AddBox,
+        init: function() {
+            //把this保存下来防止在局部函数内部取不到（局部函数内部取得this可能是别的值） 
+            var _self = this;
+            this.btn.onclick = function(){
+                //取得实时时间
+                //扩展的方法之间都可以用this.方法名 互相调用
+                var timeStamp = _self.getTimeStamp();
+                var _val = _self.Input.value;
+                //创建临时div存放修改记录
+                var tempdiv = doc.createElement('div');
+                tempdiv.innerHTML = timeStamp + ' 修改成 ' + _val;
+                tempdiv.style.color = '#000';
+                _self.div.appendChild(tempdiv);
+                _self.setColor();
             }
-        };
-        //把这个对象附给window底下的 名字叫AddBox的对象；要不你调用的时候new AddBox() 怕在window的环境下找不到；
-        win.AddBox = AddBox;
-    })(window,document)
-    //调用插件
-    new AddBox('test1','btn1');
+        },
+        //根据input框里的色值来色值body的颜色
+        setColor: function() {
+            doc.body.style.backgroundColor = this.Input.value;
+        },
+        //获取时间戳
+        getTimeStamp: function() {
+            var myDate = new Date();
+            var year = myDate.getFullYear();
+            var month = myDate.getMonth() + 1;
+            var dateT = myDate.getDate();
+            var day = myDate.getDay();
+            var hour = myDate.getHours();
+            var minute = myDate.getMinutes();
+            var second = myDate.getSeconds();
+            switch(day) {
+                case 0:
+                    day = '日';
+                    break;
+                case 1:
+                    day = '一';
+                    break;
+                case 2:
+                    day = '二';
+                    break;
+                case 3:
+                    day = '三';
+                    break;
+                case 4:
+                    day = '四';
+                    break;
+                case 5:
+                    day = '五';
+                    break;
+                case 6:
+                    day = '六';
+                    break;
+            };
+            if(hour < 10) {
+                hour = '0' + hour;
+            }
+            if(minute < 10) {
+                minute = '0' + minute;
+            }
+            if(second < 10) {
+                second = '0' + second;
+            }
+            return year + '-' + month + '-' + dateT + ' 星期' + day + ' ' + hour + ':' + minute + ':' + second;
+        }
+    };
+    //把这个对象附给window底下的 名字叫AddBox的对象；要不你调用的时候new AddBox() 怕在window的环境下找不到；
+    win.AddBox = AddBox;
+})(window,document)
+//调用插件
+new AddBox('test1','btn1');
 ```
