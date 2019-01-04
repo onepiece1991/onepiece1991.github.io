@@ -1,0 +1,15 @@
+---
+layout:     post
+title:      "vue基础"
+subtitle:   ""
+date:       2017-04-06 16:00:00
+author:     "Jxx"
+header-img: "img/post-bg-180006.jpg"
+tags:
+    - javascript
+---
+ 
+### Vue追踪变化
+当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。`Object.defineProperty 是 ES5 中一个无法 shim 的特性，这也就是为什么 Vue 不支持 IE8 以及更低版本浏览器。`
+
+
