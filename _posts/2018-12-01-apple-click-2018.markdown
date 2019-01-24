@@ -1,0 +1,28 @@
+---
+layout:     post
+title:      "苹果手机$('body').on('click',selector,function(){})点击无效的问题"
+subtitle:   ""
+date:       2018-12-01 10:30:00
+author:     "Jxx"
+header-img: "img/post-bg-180004.jpg"
+tags:
+    - CSS
+---
+
+### 简介：
+刚做一个手机端的评价页面，点击事件是用的
+```javascript
+$("body").on("click",selector,function(){
+    //通过body给子元素selector来绑定点击事件是为了防止子元素还没加载出来使点击事件无效
+})
+```
+星级评价可以点击，但是下面的标签选择就出现了问题，Android没问题，iOS死活点不了；
+
+js代码绑定方式都是一样的，html层级也没有问题，对比css才发现星型按钮设置了`cursor: pointer;`，标签选择没有设置，
+
+```css
+selector {
+    cursor: pointer;
+}
+```
+给标签加上样式后果然ios也可以点了

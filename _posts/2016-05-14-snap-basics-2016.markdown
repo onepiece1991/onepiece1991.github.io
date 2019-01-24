@@ -1,0 +1,188 @@
+---
+layout:     post
+title:      "Snap基础——如何使用Snap.svg操作和动画SVG"
+subtitle:   ""
+date:       2016-05-14 16:00:00
+author:     "Jxx"
+header-img: "img/post-bg-180008.jpg"
+tags:
+    - SVG
+---
+
+在本教程中，我们将介绍Snap.svg，这是一个JavaScript库，它的功能跟jQuery在dom的作用差不多，只不过它是专门用来操作svg的。有了它，我们就可以轻松的使用javascript和svg打交道了。
+
+为了演示一些可用的功能，我们将用SVG制作一个有动画效果的眼睛。
+
+## Snap的那些事儿
+说起Snap就不得不提[Raphäel.js](http://raphaeljs.com/)这个库。因为Snap的创造者正是Raphäel.js的创造者Dmitry Baranovskiy，而Raphäel.js也是用来操作svg的。它的主要一个功能是能使老版本的IE浏览器也能支持svg，比如ie6等。
+
+而snap的出现，则是实现了svg中的一些高级特性的功能，比如蒙板、渐变、分组以及动画等高级特性，而且也不再对老版本的不支持svg的浏览器进行兼容，大大减少了代码量更加能发挥svg的特性
+
+## Snap能做些什么
+从官方的文档 [API documentation](http://snapsvg.io/docs/)可以看到，所有svg的特性我们都可以使用Snap来操作，比如 [mask](http://snapsvg.io/docs/#Paper.mask),[group](http://snapsvg.io/docs/#Paper.group),[gradient](http://snapsvg.io/docs/#Paper.gradient), [filter](http://snapsvg.io/docs/#Snap.filter.blur),[animate](http://snapsvg.io/docs/#Snap.animate), [pattern](http://snapsvg.io/docs/#Element.pattern)等属性。
+
+使用snap能帮助我们创建svg格式的图形，当然也能基于现有的svg图形来进行操作。意味着我们不一定要使用snap来创建图形，我们可以先使用一些适量编辑软件如Adobe IIIustrator,Inkscape,或者是Sketch来制作svg图形，然后再使用snap来进行一些操作。
+
+## Snap.svg入门
+### 下载
+首先，您需要[下载Snap.svg](https://github.com/adobe-webplatform/Snap.svg/archive/v0.5.1.zip)。完成后，您将在文档中找到以下内容：
+![Snap.svg文档](https://onepiece1991.github.io/img/in-post/post-svg/svg-180009.png)
+
+- demos - 这里有一些例子，您也可以在他们网站的演示部分找到 
+- dist - 这是压缩和非压缩的（开发使用）snap.svg脚本 
+- doc - 在这里你可以找到[snapsvg.io](http://snapsvg.io/)上也提供的[API文档](http://snapsvg.io/docs/)
+- src - 这些是构成Snap.svg的组件，工具和插件 ，如animate, paper, running a Grunt task等。
+- test  - 此目录包含Snap.svg的单元测试 
+
+### 设置项目
+下载了Snap.svg资源后，开始一个新的Web项目，需要包括：
+
+- index.html  - 主HTML文件
+- js / snap.svg.js  - snap.svg插件
+- js / main.js  - 我们的主要工作区
+
+创建一个HTML模板，并在页面的某处引用“scripts / snap.svg.js”和“scripts / main.js”脚本。 
+
+之后，将一个  <svg>容器放在其中  <body>并给它一个id。你应该有点像这样的东西：
+```SVG
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Introducing Snap.svg</title>
+        <script src="js/snap.svg.js"></script>
+        <script src="js/main.js"></script>
+    </head>
+    <body>
+        <svg id="svg"></svg>
+    </body>
+</html>
+```
+
+## 开始使用Snap
+开始之前需要初始化Snap，跟jQuery差不多,即使用Snap来制定我们需要操作svg的节点并把它指定给一个变量。我们这里就定义为s。
+```SVG
+var s = Snap("#svg");
+```
+
+现在我们就可以使用Snap提供的各种方法来操作s这个变量，比如圆或者是矩形。
+
+- 圆(`circle`)，创建圆需要三个参数：X(x轴的坐标)，Y(y轴的坐标)，半径。参考文档:[circle API](http://snapsvg.io/docs/#Paper.circle)
+- 矩形(`rect`)，需要四个参数：X，Y，宽，高。参考文档: [rect API](http://snapsvg.io/docs/#Paper.rect)
+- 椭圆(`ellipse`)，需要四个参数：X，Y，horizontal radius(水平方向的半径)，vertical radius(垂直方向的半径)。参考文档: [ellipse API](http://snapsvg.io/docs/#Paper.ellipse)
+我们输入下面的js代码：
+```javascript
+//创建半径为80px的圆
+var circle = s.circle(90,120,80);
+//长宽为160px的正方形
+var square = s.rect(210,40,160,160);
+//水平方向半径为50px，垂直方向半径为80px的椭圆
+var ellipse = s.ellipse(460,120,50,80);
+```
+就会为我们绘制下面这三个图形：
+![创建圆、矩形和椭圆](https://onepiece1991.github.io/img/in-post/post-svg/svg-180010.png)
+
+从代码运行的结果来看，默认填充的颜色是`黑色`。下面我们使用snap来设置一些样式，如`填充`、`透明度`、`边框`、`边框的宽度`等属性。具体可以去看看文档[SVG attributes](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute)。
+```javascript
+circle.attr({
+    fill: 'coral',
+    stroke: 'coral',
+    strokeOpacity: .3,
+    strokeWidth: 10
+});
+
+square.attr({
+    fill: 'lightblue',
+    stroke: 'lightblue',
+    strokeOpacity: .3,
+    strokeWidth: 10
+});
+
+ellipse.attr({
+    fill: 'mediumturquoise',
+    stroke: 'mediumturquoise',
+    strokeOpacity: .2,
+    strokeWidth: 10
+});
+```
+这些属性使我们的svg形状更漂亮！
+![效果图](https://onepiece1991.github.io/img/in-post/post-svg/svg-180011.png)
+
+# 进一步的SVG操作
+以示例为基础
+## 分组操作图形
+Snap为我们提供来分组操作group这一强大的功能，顾名思义，使用它我们可以把多个图形编成一组，使之变为一个图形。
+
+先来创建两个图形，然后把它们编成一组。再来操作它们的属性。
+```javascript
+var circle_1 = s.circle(200, 200, 140);
+var circle_2 = s.circle(150, 200, 140);
+
+var circles = s.group(circle_1, circle_2);
+
+circles.attr({
+    fill: 'coral',
+    fillOpacity: .6
+});
+```
+
+结果如下：  
+![效果图](https://onepiece1991.github.io/img/in-post/post-svg/svg-180012.png)
+
+在文章开始部分，我们说过会做一个眼睛的例子。需要用到svg中的蒙板属性`mask`。首先我们来创建一个椭圆并放置在上组图形的中间。
+```javascript
+var circle_1 = s.circle(300, 200, 140);
+var circle_2 = s.circle(250, 200, 140);
+
+var circles = s.group(circle_1, circle_2);
+
+var ellipse = s.ellipse(275, 220, 170, 90);
+
+circles.attr({
+    fill: 'coral',
+    fillOpacity: .6,
+});
+
+ellipse.attr({
+    opacity: .4
+});
+```
+
+现在我们就以椭圆为蒙板来对图形进行剪裁，并且对椭圆填充为白色：
+```javascript
+circles.attr({
+    fill: 'coral',
+    fillOpacity: .6,
+    mask: ellipse
+})
+
+ellipse.attr({
+    fill: '#fff',
+    opacity: .8
+});
+```
+## 让图形动起来
+眼睛的形状就完成来，不过要是让眼睛动起来会更加有趣一点。使用Snap中的animate方法来实现动画效果非常方便。要使眼睛动起来，我们只需要让椭圆的垂直的半径从1增加到90就可以了。
+
+先来创建一个名为blink的动画函数：
+```javascript
+function blink(){
+    ellipse.animate({ry:1)},220,function(){
+        ellipse.animate({ry:90},300);
+    )}
+};
+```
+
+现在我们可以使用setInterval函数来循环执行blink动画，这样我们的眼睛就会不停的运动。
+
+```javascript
+setInterval(blink,3000);
+```
+效果如下：  
+![效果图](https://onepiece1991.github.io/img/in-post/post-svg/svg-180013.gif)
+
+## 浏览器支持
+要注意的使，Snap只支持**IE9+**,chrome,safari,firefox以及opera等现代浏览器。
+
+> 本文转自：[英文版参考文章](https://webdesign.tutsplus.com/articles/how-to-manipulate-and-animate-svg-with-snapsvg--cms-21323)
+[中文版参考文章](https://juejin.im/entry/58f421f844d904006cffb604)
