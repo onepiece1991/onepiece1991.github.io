@@ -9,6 +9,93 @@ tags:
     - javascript
 ---
 
+### 通过ajax获取页面中指定容器内的代码块
+```javascript
+//方法一
+success: function(result) {
+            var Obj = $("<code></code>").append(result);
+            var $html = $(".page-wrapper", Obj);
+            var value = $html.html();
+            $("#mainPage").html(value);
+        }
+        
+//方法二
+success: function(result) {
+            var reg = /[\s\S]*<\/body>/g;
+            var html = reg.exec(result)[0];
+            //然后用filter来筛选对应块对象，如：class='page-wrapper'
+            var page = $(html).filter(".page-wrapper");
+            var value = page.html();
+            $("#mainPage").html(value);
+        }
+```
+
+
+
+
+### 截取页面中载入的js文件
+- result 是通过ajax获取的html页面
+- trimSpace()和getMultiScripts()函数用法如下所述
+
+```javascript
+// 第一步：匹配加载的页面中是否含有js
+var regDetectJs = /<script(.|\n)*?>(.|\n|\r\n)*?<\/script>/ig;
+var jsContained = result.match(regDetectJs);
+
+// 第二步：如果包含js，则一段一段的取出js再加载执行
+if (jsContained) {
+    // 分段取出js正则(这一步感觉没什么用，删了)
+    // var regGetJS = /<script(.|\n)*?>((.|\n|\r\n)*)?<\/script>/im;
+
+    // 按顺序分段执行js
+    var jsNums = jsContained.length;
+    var sname = [];
+    for (var i = 0; i < jsNums; i++) {
+        //(同上，删了)
+        // var jsSection = jsContained[i].match(regGetJS);
+        // var script = jsSection[0];
+        var script = jsContained[i];
+        var arr = script.split("../../");
+        if (arr.length != 1) {
+            var sarr = arr[1].split('"></script>');
+            sname[i] = sarr[0];
+        }
+    }
+    trimSpace(sname);
+    getMultiScripts(sname,'./');
+}
+```
+
+### 如果array中的元素存在空字符串''、undefined、null和empty,则去掉该元素
+```javascript
+function trimSpace(array) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] == " " || array[i] == null || typeof(array[i]) == "undefined") {
+            array.splice(i, 1);
+            i = i - 1;
+        }
+    }
+    return array;
+}
+```
+
+### jQuery载入多个js文件
+ - @param arr js路径集合{Array}
+ - @param path js父级路径{String}
+
+```javascript
+function getMultiScripts(arr, path) {
+    var _arr = $.map(arr, function(scr) {
+        return $.getScript((path || "") + scr);
+    });
+
+    _arr.push($.Deferred(function(deferred) {
+        $(deferred.resolve);
+    }));
+
+    return $.when.apply($, _arr);
+}
+```
 
 ### 每隔两行tr添加背景颜色
 ```javascript
