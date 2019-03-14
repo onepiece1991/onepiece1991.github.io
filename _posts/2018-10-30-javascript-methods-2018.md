@@ -85,14 +85,17 @@ function trimSpace(array) {
 
 ```javascript
 function getMultiScripts(arr, path) {
+    //将数组arr中的元素转换到另一个数组中
     var _arr = $.map(arr, function(scr) {
+        //通过 HTTP GET 请求载入并执行拼接后的 JavaScript 文件
         return $.getScript((path || "") + scr);
     });
-
     _arr.push($.Deferred(function(deferred) {
+        //解决递延对象，并根据给定的参数调用任何完成的回调函数。
         $(deferred.resolve);
     }));
-
+    
+    //提供一种方法来执行一个或多个对象的回调函数，延迟对象通常表示异步事件。
     return $.when.apply($, _arr);
 }
 ```
