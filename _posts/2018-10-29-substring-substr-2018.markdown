@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "截取字符串"
-subtitle:   "substring() substr() slice() splice()"
+subtitle:   "substring() substr() slice() splice() indexOf()"
 date:       2018-10-29 20:25:00
 author:     "Jxx"
 header-img: "img/post-bg-180006.jpg"
@@ -126,3 +126,23 @@ console.log(animals.slice(1, 5));
 // expected output: Array ["bison", "camel", "duck", "elephant"]
 ```
 
+## indexOf()
+
+方法可返回某个指定的字符串值在字符串中首次出现的位置。
+
+##### 语法
+
+```javascript
+stringObject.indexOf(searchvalue,fromindex)
+//如果要检索的字符串值没有出现，则该方法返回 -1。
+```
+|参数		|描述		|
+|--	|--	|
+|searchvalue	|必需。规定需检索的字符串值。	|
+|fromindex	|可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。|
+
+## 总结
+> substring(start, stop);   ----不包括stop  
+> substr(start, length);   
+> slice(start, end) ;  -----不包括end ----用于数组，不会修改原数组，返回一个新数组  
+> splice(start, deleteCount, item);  -----deleteCount=0,不删除直接在start位置添加item,否则删除deleteCount位置的数据并在该位置添加item
