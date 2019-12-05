@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "javascript methods"
-subtitle:   "[].slice.call()方法"
+title:      "[].slice.call()方法"
+subtitle:   "javascript methods"
 date:       2019-03-14 18:41:00
 author:     "Jxx"
 header-img: "img/post-bg-180006.jpg"

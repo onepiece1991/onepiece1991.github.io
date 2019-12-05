@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "javascript methods"
+title:      "网站换肤"
 subtitle:   "link rel=alternate网站换肤功能最佳实现"
 date:       2019-03-14 18:41:00
 author:     "Jxx"
